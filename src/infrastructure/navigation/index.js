@@ -5,7 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faDumbbell, faGear } from '@fortawesome/free-solid-svg-icons';
 
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import { Text } from '../../components/typography/text.component';
 
 import { SafeArea } from '../../components/utility/safe-area.component';
 
