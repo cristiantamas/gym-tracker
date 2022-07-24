@@ -11,9 +11,8 @@ import { Text } from '../../components/typography/text.component';
 
 import { SafeArea } from '../../components/utility/safe-area.component';
 
-import { WorkoutScreen } from '../../features/workout/workout-screen/workout-screen.component';
-
 import { theme } from '../theme';
+import { WorkoutNavigator } from './workout.navigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +50,7 @@ export const Navigation = () => {
           inactiveTintColor: theme.colors.ui.secondary,
         }}
       >
-        <Tab.Screen name="Workout" component={WorkoutScreen} />
+        <Tab.Screen name="Workout" component={WorkoutNavigator} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
