@@ -9,7 +9,6 @@ export const Checked = ({ exercise }) => {
   const { exercises, setExerciseStatus } = useContext(CurrentWorkoutContext);
   const { isFinished } = exercise;
 
-  console.log('isFinished', isFinished);
   return (
     <CheckedButton>
       <AntDesign
