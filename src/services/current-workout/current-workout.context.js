@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   exercises: [
     {
       name: 'Squats with bar',
+      isFinished: false,
       sets: [
         {
           reps: 8,
@@ -21,6 +22,7 @@ const INITIAL_STATE = {
     },
     {
       name: 'Romanian Deadlift',
+      isFinished: false,
       sets: [
         {
           reps: 8,
@@ -38,6 +40,7 @@ const INITIAL_STATE = {
     },
     {
       name: 'Pushups',
+      isFinished: false,
       sets: [
         {
           reps: 9,
@@ -52,6 +55,7 @@ const INITIAL_STATE = {
     },
     {
       name: 'TRX Rows',
+      isFinished: false,
       sets: [
         {
           reps: 8,
@@ -66,6 +70,7 @@ const INITIAL_STATE = {
     },
     {
       name: 'Military Press',
+      isFinished: false,
       sets: [
         {
           reps: 8,
@@ -88,10 +93,19 @@ export const CurrentWorkoutContext = React.createContext({
   exerciseList: [],
 });
 
+export const CURRENT_WORKOUT_ACTION_TYPES = {
+  SET_EXERCISE_LIST: 'SET_EXERCISE_LIST',
+};
+
 const currentWorkoutReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case CURRENT_WORKOUT_ACTION_TYPES.SET_EXERCISE_LIST:
+      return {
+        ...state,
+        exercises: payload,
+      };
     default:
       throw new Error(`Unhandled type ${type} in currentWorkoutReducer`);
   }
@@ -100,8 +114,27 @@ const currentWorkoutReducer = (state, action) => {
 export const CurrentWorkoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(currentWorkoutReducer, INITIAL_STATE);
   const { exercises } = state;
+
+  const updateExerciseList = (newExerciseList) => {
+    dispatch({ type: 'SET_EXERCISE_LIST', payload: newExerciseList });
+  };
+
+  const setExerciseStatus = (exercise, isFinished) => {
+    const newExercises = exercises.map((e) => {
+      if (e.name === exercise.name) {
+        return {
+          ...e,
+          isFinished,
+        };
+      }
+      return e;
+    });
+    updateExerciseList(newExercises);
+  };
+
   const value = {
     exercises,
+    setExerciseStatus,
   };
   return <CurrentWorkoutContext.Provider value={value}>{children}</CurrentWorkoutContext.Provider>;
 };

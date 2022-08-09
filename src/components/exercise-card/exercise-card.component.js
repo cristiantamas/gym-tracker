@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Checked } from '../checked/checked.component';
 import { ExerciseCardContainer, Info, ExerciseInfo } from './exercise-card.styles';
 
 export const ExerciseCard = ({ exercise }) => {
@@ -20,6 +20,7 @@ export const ExerciseCard = ({ exercise }) => {
 
         {renderSets()}
       </Info>
+      <Checked exercise={exercise} />
     </ExerciseCardContainer>
   );
 };
