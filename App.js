@@ -8,6 +8,7 @@ import { theme } from './src/infrastructure/theme';
 
 import { useFonts as useOpenSans, OpenSans_400Regular } from '@expo-google-fonts/open-sans';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
+import { CurrentWorkoutProvider } from './src/services/current-workout/current-workout.context';
 
 export default function App() {
   let [openSansLoaded] = useOpenSans({ OpenSans_400Regular });
@@ -20,7 +21,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navigation />
+        <CurrentWorkoutProvider>
+          <Navigation />
+        </CurrentWorkoutProvider>
       </ThemeProvider>
       <StatusBar style="light" />
     </>
