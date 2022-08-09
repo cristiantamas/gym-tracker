@@ -3,7 +3,7 @@ import { Checked } from '../checked/checked.component';
 import { ExerciseCardContainer, Info, ExerciseInfo } from './exercise-card.styles';
 
 export const ExerciseCard = ({ exercise }) => {
-  const { name, sets } = exercise;
+  const { name, sets, isFinished } = exercise;
 
   const renderSets = () => {
     return sets.map((set, index) => {
@@ -16,7 +16,10 @@ export const ExerciseCard = ({ exercise }) => {
   return (
     <ExerciseCardContainer>
       <Info>
-        <ExerciseInfo variant="titleBold">{`${name} -  ${sets.length} sets`}</ExerciseInfo>
+        <ExerciseInfo
+          isFinished={isFinished}
+          variant="titleBold"
+        >{`${name} -  ${sets.length} sets`}</ExerciseInfo>
 
         {renderSets()}
       </Info>

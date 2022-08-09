@@ -11,5 +11,7 @@ export const Info = styled.View`
 `;
 
 export const ExerciseInfo = styled(Text)`
+  text-decoration: ${({ isFinished }) => (isFinished ? `line-through` : `none`)};
+  text-decoration-color: ${(props) => props.theme.colors.text.primary};
   color: ${(props) => props.theme.colors.text.primary};
 `;
