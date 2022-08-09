@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Divider } from 'react-native-paper';
 
 import { Text } from '../typography/text.component';
 import { Spacer } from '../spacer/spacer.component';
 
-import { NumericInput } from '../numeric-input/numeric-input.component';
 import { Feather } from '@expo/vector-icons';
 
-import { SetContainer, WeightInput } from './set-input.styles';
+import { SetsContainer, SetContainer, RepsInput, WeightInput } from './set-input.styles';
 
-export const SetInput = ({ set, setNo }) => {
-  const [weight, setWeight] = useState('');
-  const [reps, setReps] = useState(set.reps);
+export const SetInput = ({ set, setNo, updateExercise = () => null }) => {
+  const [weight, setWeight] = useState(null);
+  const [reps, setReps] = useState(null);
+
+  useEffect(() => {
+    if (weight === null && reps === null) {
+      return;
+    }
+    updateExercise(true);
+  }, [weight, reps]);
 
   return (
-    <>
+    <SetsContainer>
       <Text variant="body">{`Set no. ${setNo}:`}</Text>
+      <Spacer size="medium" />
       <SetContainer>
-        <NumericInput value={reps} onChange={setReps} />
+        <RepsInput
+          keyboardType="numeric"
+          defaultValue={set.reps.toString()}
+          onChangeText={(text) => setReps(text)}
+        />
         <Spacer horizontal={false} size="medium" />
         {set.weight !== undefined ? (
           <>
@@ -30,7 +40,7 @@ export const SetInput = ({ set, setNo }) => {
           </>
         ) : null}
       </SetContainer>
-      <Divider />
-    </>
+      <Spacer size="large" />
+    </SetsContainer>
   );
 };
