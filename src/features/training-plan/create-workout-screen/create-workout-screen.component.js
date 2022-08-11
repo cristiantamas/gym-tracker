@@ -11,7 +11,10 @@ export const CreateWorkoutScreen = () => {
 
   const addExercise = () => {
     setExerciseList([...exerciseList, currentExercise]);
-    setCurrentExercise({});
+    setCurrentExercise({
+      name: '',
+      sets: [],
+    });
   };
 
   return (
@@ -21,6 +24,7 @@ export const CreateWorkoutScreen = () => {
         renderItem={({ item }) => <Text>{item.name}</Text>}
         keyExtractor={(item) => item.name}
       />
+
       <Spacer size="large" />
       <AddExerciseButton icon="plus" mode="contained" onPress={addExercise}>
         Add Exercise
