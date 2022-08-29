@@ -8,6 +8,7 @@ import { theme } from './src/infrastructure/theme';
 
 import { useFonts as useOpenSans, OpenSans_400Regular } from '@expo-google-fonts/open-sans';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
+import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
 import { CurrentWorkoutProvider } from './src/services/current-workout/current-workout.context';
 
 export default function App() {
@@ -21,9 +22,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CurrentWorkoutProvider>
-          <Navigation />
-        </CurrentWorkoutProvider>
+        <AuthenticationContextProvider>
+          <CurrentWorkoutProvider>
+            <Navigation />
+          </CurrentWorkoutProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <StatusBar style="light" />
     </>

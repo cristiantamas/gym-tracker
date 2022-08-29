@@ -10,8 +10,8 @@ const WorkoutStack = createStackNavigator();
 export const WorkoutNavigator = () => {
   return (
     <WorkoutStack.Navigator
-      headerMode="none"
       screenOptions={{
+        headerShown: false,
         ...TransitionPresets.ModalPresentationIOS,
       }}
     >
